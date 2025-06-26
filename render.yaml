@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ieramiro
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn ieramiro.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: ieramiro.settings
+      - key: PYTHON_VERSION
+        value: 3.11
