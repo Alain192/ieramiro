@@ -1,0 +1,19 @@
+# Entorno virtual
+env/
+venv/
+.env/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+
+# Archivos generados
+/staticfiles/
+media/
+*.sqlite3
+*.log
+
+# Configuraciones del editor
+.vscode/
+.DS_Store
+Thumbs.db
