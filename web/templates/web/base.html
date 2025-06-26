@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mi sitio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'web/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul class="nav-bar">
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'admision' %}">Admisión</a></li>
+                <li><a href="{% url 'niveles' %}">Niveles</a></li>
+                <li class="dropdown">
+                    <a href="#">Departamentos</a>
+                    <ul class="dropdown-content">
+                        <li><a href="{% url 'psicologia' %}">Psicología</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© I.E PNP Ramiro Villaverde Lazo</p>
+    </footer>
+
+</body>
+</html>

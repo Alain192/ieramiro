@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+<div class="contenido">
+  <h1>Departamento de Psicología</h1>
+  <p>Bienvenido al área de apoyo emocional y psicológico del IEP Sgto°1 Ramiro Villaverde Lazo.</p>
+
+  <div class="acciones">
+    <a href="{% url 'login' %}" class="btn">Iniciar Sesión</a>
+    <a href="{% url 'register' %}" class="btn">Registrarse</a>
+  </div>
+</div>
+{% endblock %}

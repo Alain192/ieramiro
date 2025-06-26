@@ -1,0 +1,696 @@
+:root {
+    --primary-color: #2e7d32;       /* Verde principal */
+    --primary-hover: #1b5e20;       /* Verde más oscuro */
+    --accent-color: #fdd835;        /* Amarillo como acento */
+    --text-color: #1b1b1b;          /* Texto principal oscuro */
+    --text-light: #ffffff;          /* Texto claro */
+    --bg-white: #ffffff;            /* Fondo blanco */
+    --input-bg: #f1f8f2;            /* Verde muy suave para inputs */
+    --border-color: #c8e6c9;        /* Borde verde claro */
+    --shadow-light: 0 2px 10px rgba(46, 125, 50, 0.08);
+    --shadow-medium: 0 8px 25px rgba(46, 125, 50, 0.15);
+    --shadow-strong: 0 12px 35px rgba(46, 125, 50, 0.25);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+    --error-color: #d32f2f;
+    --success-color: #388e3c;
+    --warning-color: #f57c00;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    line-height: 1.6;
+    font-size: 16px;
+    padding-bottom: 80px;
+}
+
+/* Header y navegación */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    padding: 1.5rem 0;
+    box-shadow: var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.nav-bar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 0;
+    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.nav-bar li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-bar li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-bar li a:hover::after {
+    width: 80%;
+}
+
+.nav-bar li a:hover {
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-strong);
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.dropdown-content li {
+    padding: 0;
+    margin: 0.25rem 0.75rem;
+}
+
+.dropdown-content li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    font-weight: 500;
+}
+
+.dropdown-content li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+    color: var(--accent-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(5px);
+}
+
+/* Contenido principal */
+main {
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 200px);
+}
+
+/* Contenedor general para páginas */
+.contenido {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Títulos */
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(46, 125, 50, 0.1);
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* Párrafos */
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1.25rem;
+    box-shadow: 0 -4px 20px rgba(46, 125, 50, 0.15);
+    backdrop-filter: blur(10px);
+    z-index: 50;
+}
+
+footer p {
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+/* Formulario estilo glassmorphism mejorado */
+.form-glass {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--border-color);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    width: 100%;
+    max-width: 700px;
+    box-shadow: var(--shadow-strong);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    margin: 0 auto;
+}
+
+.form-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
+}
+
+.form-glass:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(46, 125, 50, 0.2);
+}
+
+.form-group {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+    transition: var(--transition-smooth);
+}
+
+/* Inputs y selects */
+input, select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-smooth);
+    font-family: inherit;
+    box-shadow: var(--shadow-light);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1), var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+input::placeholder {
+    color: #888;
+    opacity: 0.8;
+    transition: var(--transition-smooth);
+}
+
+input:focus::placeholder {
+    opacity: 0.5;
+    transform: translateY(-2px);
+}
+
+/* Inputs específicos para formularios sin form-glass */
+form:not(.form-glass) input, 
+form:not(.form-glass) select {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+form:not(.form-glass) label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Botones mejorados */
+.btn, button {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    display: inline-block;
+    margin: 1rem 0.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    letter-spacing: 0.02em;
+    min-width: 140px;
+    text-align: center;
+}
+
+.btn::after, button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn:hover::after, button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover, button:hover {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #f9c74f 100%);
+    color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(253, 216, 53, 0.3);
+}
+
+.btn:active, button:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+/* Estilo para Test de Beck */
+.formulario-pregunta {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--input-bg) 0%, rgba(241, 248, 242, 0.5) 100%);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-smooth);
+}
+
+.formulario-pregunta:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.formulario-pregunta label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.radio-group:hover {
+    background: rgba(46, 125, 50, 0.05);
+}
+
+.radio-group input[type="radio"] {
+    width: auto;
+    margin: 0;
+    transform: scale(1.2);
+    accent-color: var(--primary-color);
+}
+
+.radio-group label {
+    margin: 0;
+    font-weight: 500;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Estilo para preguntas tipo test (compatibilidad) */
+form p {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--input-bg) 0%, rgba(241, 248, 242, 0.5) 100%);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+form p:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+form p label {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+form p label:hover {
+    background: rgba(46, 125, 50, 0.05);
+    color: var(--primary-color);
+}
+
+form p input[type="radio"] {
+    transform: scale(1.3);
+    margin: 0;
+    accent-color: var(--primary-color);
+    transition: var(--transition-smooth);
+}
+
+form p input[type="radio"]:checked + span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Mensajes de error y éxito */
+ul.errorlist, 
+ul[style*="color:red"], 
+ul[style*="color: red"] {
+    list-style: none;
+    color: var(--error-color) !important;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(211, 47, 47, 0.1);
+    border: 1px solid rgba(211, 47, 47, 0.3);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+
+ul.errorlist li {
+    padding: 0.25rem 0;
+}
+
+/* Mensajes de Django */
+ul[style*="color: yellow"] {
+    list-style: none;
+    color: var(--warning-color) !important;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(245, 124, 0, 0.1);
+    border: 1px solid rgba(245, 124, 0, 0.3);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Estilos para página de registro exitoso */
+h1[style*="color: white"] {
+    color: var(--primary-color) !important;
+    text-shadow: none;
+}
+
+/* Acciones en páginas mejoradas */
+.acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+/* Estilos para resultados del test */
+strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Estilos para enlaces normales */
+a:not(.btn) {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+a:not(.btn):hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Responsive mejorado */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding-bottom: 100px;
+    }
+
+    .nav-bar {
+        gap: 1.5rem;
+        padding: 0 1rem;
+        flex-wrap: wrap;
+    }
+
+    main {
+        padding: 2rem 1rem;
+    }
+
+    .form-glass {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .formulario-pregunta {
+        padding: 1rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    form p label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    form p input[type="radio"] {
+        margin-top: 0.5rem;
+        align-self: flex-start;
+    }
+
+    .acciones {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn, button {
+        width: 100%;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-bar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dropdown-content {
+        position: relative;
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.1);
+        margin-top: 0.5rem;
+    }
+
+    .form-glass {
+        padding: 1.5rem 1rem;
+        border-radius: var(--border-radius);
+    }
+
+    .formulario-pregunta {
+        padding: 1rem;
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-glass, .formulario-pregunta {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible mejorado */
+*:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Estilos específicos para inputs de fecha */
+input[type="date"] {
+    position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Estilos para select mejorados */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 3rem;
+}
+
+/* Ajuste específico para formularios de login simples */
+form:not(.form-glass) {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Estilos para mensajes de confirmación */
+.mensaje-exito {
+    background: linear-gradient(135deg, var(--success-color), #4caf50);
+    color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin: 2rem 0;
+    box-shadow: var(--shadow-medium);
+}

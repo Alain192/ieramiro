@@ -1,0 +1,14 @@
+<form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="formulario-pregunta">
+            <label>{{ field.label }}</label>
+            {% for subwidget in field.subwidgets %}
+                <div class="radio-group">
+                    {{ subwidget.tag }} {{ subwidget.choice_label }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <button class="btn" type="submit">Enviar</button>
+</form>

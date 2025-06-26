@@ -1,0 +1,10 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Resultado del Test{% endblock %}
+
+{% block content %}
+<h1>Resultado del Test de Beck</h1>
+<p>Tu puntaje total es: <strong>{{ puntuacion }}</strong></p>
+<p>Nivel: <strong>{{ nivel }}</strong></p>
+<a href="{% url 'portada' %}" class="btn">Volver a la portada</a>
+{% endblock %}

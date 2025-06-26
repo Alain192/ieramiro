@@ -1,0 +1,16 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Portada{% endblock %}
+
+{% block content %}
+<h1>Bienvenido/a, {{ request.user.first_name|default:request.user.username }}</h1>
+
+<p>Has iniciado sesión correctamente.</p>
+
+<a href="{% url 'test_beck' %}">
+    <button>Ir al Test de Beck</button>
+</a>
+
+<br><br>
+<a href="{% url 'logout' %}">Cerrar sesión</a>
+{% endblock %}
