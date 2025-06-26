@@ -71,7 +71,9 @@ import os
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Obligatorio para producción
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-ALLOWED_HOSTS = ['.onrender.com']  # o luego tu dominio real de Render
+ALLOWED_HOSTS = ['.onrender.com','ramirovillaverdelazo.edu.pe','www.ramirovillaverdelazo.edu.pe']  # o luego tu dominio real de Render
+SECURE_SSL_REDIRECT = True
+
 
 
 ROOT_URLCONF = 'ieramiro.urls'

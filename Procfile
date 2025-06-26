@@ -1,1 +1,1 @@
-web: gunicorn ieramiro.wsgi
+web: gunicorn taleer_inv.wsgi
