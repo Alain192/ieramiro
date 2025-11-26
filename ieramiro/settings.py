@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-!956_g&ng5(b*2yaulbk($)-oq7ppz5r9*$#bcm*u!5-og0ey!
 DEBUG = True
 
 ALLOWED_HOSTS = ['.onrender.com', 'ramirovillaverdelazo.edu.pe', 'www.ramirovillaverdelazo.edu.pe']
-SECURE_SSL_REDIRECT = True
+# Only redirect to HTTPS in production (when DEBUG is False)
+SECURE_SSL_REDIRECT = not DEBUG
 
 
 # Application definition
