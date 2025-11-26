@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Paciente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    dni = models.CharField(max_length=8, unique=True)
+    dni = models.CharField(max_length=8, unique=True, db_index=True)
     genero = models.CharField(max_length=10)
     telefono = models.CharField(max_length=15)
     fecha_nacimiento = models.DateField()
@@ -12,7 +12,7 @@ class Paciente(models.Model):
         return self.user.get_full_name()
 
 class BeckResultado(models.Model):
-    paciente = models.ForeignKey(User, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     puntuacion = models.IntegerField()
     nivel = models.CharField(max_length=100)
 

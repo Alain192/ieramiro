@@ -174,12 +174,14 @@ class TestBeckForm(forms.Form):
         
     ]
 
-    # Crea dinámicamente los campos del formulario
-    for index, (label, choices) in enumerate(PREGUNTAS_OPCIONES, 1):
-        locals()[f"pregunta_{index}"] = forms.ChoiceField(
-            label=label,
-            choices=choices,
-            widget=forms.RadioSelect,
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Crea dinámicamente los campos del formulario
+        for index, (label, choices) in enumerate(self.PREGUNTAS_OPCIONES, 1):
+            self.fields[f"pregunta_{index}"] = forms.ChoiceField(
+                label=label,
+                choices=choices,
+                widget=forms.RadioSelect,
+            )
 
     

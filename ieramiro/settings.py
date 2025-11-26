@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-!956_g&ng5(b*2yaulbk($)-oq7ppz5r9*$#bcm*u!5-og0ey!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com', 'ramirovillaverdelazo.edu.pe', 'www.ramirovillaverdelazo.edu.pe']
+# Only redirect to HTTPS in production (when DEBUG is False)
+SECURE_SSL_REDIRECT = not DEBUG
 
 
 # Application definition
@@ -43,9 +45,7 @@ INSTALLED_APPS = [
 
 import os
 
-STATIC_URL = '/static/'
 LOGIN_URL = 'login'
-
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'web/static'),
@@ -64,17 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
-import os
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Obligatorio para producción
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-ALLOWED_HOSTS = ['.onrender.com','ramirovillaverdelazo.edu.pe','www.ramirovillaverdelazo.edu.pe']  # o luego tu dominio real de Render
-SECURE_SSL_REDIRECT = True
-
-
 
 ROOT_URLCONF = 'ieramiro.urls'
 
@@ -141,7 +130,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Obligatorio para producción
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
