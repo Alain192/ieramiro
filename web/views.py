@@ -37,10 +37,6 @@ def register(request):
                 messages.error(request, "Las contraseñas no coinciden.")
                 return render(request, 'web/register.html', {'form': form})
 
-            if User.objects.filter(username=email).exists():
-                messages.error(request, "Este correo ya está registrado.")
-                return render(request, 'web/register.html', {'form': form})
-
             # Crear usuario
             user = User.objects.create_user(
                 username=email,
@@ -72,8 +68,8 @@ def login_view(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             try:
-                username = User.objects.get(email=email).username
-                user = authenticate(request, username=username, password=password)
+                user_obj = User.objects.get(email=email)
+                user = authenticate(request, username=user_obj.username, password=password)
                 if user is not None:
                     login(request, user)
                     return redirect('portada')
@@ -90,10 +86,6 @@ def portada(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
-
-@login_required
-def test_beck(request):
-    return render(request, 'web/test_beck.html')
 
 @login_required
 def test_beck(request):
